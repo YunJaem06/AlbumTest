@@ -52,4 +52,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/register_btn_gallery"
         app:layout_constraintStart_toEndOf="@+id/register_btn_gallery" />
 
+    <Button
+        android:id="@+id/btn_upLoad"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_rv_gallery"
+        android:text="업로드"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
