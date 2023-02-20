@@ -17,7 +17,6 @@ import java.util.*
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterBinding::bind, R.layout.fragment_register) {
 
-    var selectImage : Uri? = null
     var imageItem = mutableListOf<Uri>()
     lateinit var registerAdapter : RegisterAdapter
     lateinit var fbStorage: StorageReference
@@ -58,8 +57,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                     fbStorage.child("Image").child(imgFileName)
                     imageItem.add(imageUri)
                 }
+                // 하나 선택
             } else {
                 val imageUri = it.data!!.data
+
+                // 파베에 전달하고 파베 uri주소 받아서 전달
                 val pathReference = fbStorage.child("Image").child(imgFileName)
                 pathReference.putFile(imageUri!!).addOnSuccessListener {
                     val result = it.metadata!!.reference!!.downloadUrl
@@ -72,22 +74,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(FragmentRegisterB
                 }
             }
             registerAdapter.notifyDataSetChanged()
-
-            //
-//            //값 담기
-//            selectImage = it.data?.data
-
-//            val storage : FirebaseStorage = FirebaseStorage.getInstance("gs://albumtest-82ad7.appspot.com")
-//            val storageReference = storage.reference
-//            val reference = storageReference.child("image").child(imgFileName)
-//            reference.putFile(selectImage!!).addOnSuccessListener {
-//                val result = it.metadata!!.reference!!.downloadUrl
-//                result.addOnSuccessListener {
-//
-//                    var imageLink = it.toString()
-//                    imageItem.add(imageLink.toUri())
-//                }
-//            }
         }
 
     }
